@@ -196,6 +196,7 @@ DEPENDENCIES
   excon
   fast_jsonapi
   figaro
+  jwt
   listen (~> 3.3)
   omniauth (~> 1.9)
   omniauth-google-oauth2
