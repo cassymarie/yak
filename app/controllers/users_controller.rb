@@ -1,27 +1,21 @@
 class UsersController < ApplicationController
-    before_action :authentication_required, only: [:show]
-    skip_before_action :verify_authenticity_token
+    skip_before_action :authorized, only: [:create]
 
-    def new
-        @user = User.new
+    def profile
+        render json: { user: UserSerializer.new(current_user) }, status: :accepted
     end
 
     def create
-        @user = User.new(user_params)
+        @user = User.create(user_params)
         @user.email.downcase!
         @user.provider = 'email'
 
-        if @user.save 
-            session[:user_id] = @user.id
+        if @user.valid? 
+            @token = encode_token({user_id: @user.id})
+            render json: { user: UserSerializer.new(@user, {include: [:teams]}), jwt: @token }, status: :created
         else
-            # alert = ''
-            # @user.errors.full_messages.each {|err| alert += "#{flash[:alert] = err}... "} unless @user.errors.nil?
-            # flash[:alert] = alert
-            # render new_user_path
+           render json: { error: 'failed to create User' }, status: :not_acceptable
         end
-    end
-
-    def destroy
     end
 
     private
