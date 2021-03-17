@@ -1,11 +1,19 @@
-class MlbTeam < ApplicationRecord
+class Mlb::MlbTeam < ApplicationRecord
+
+    has_many :mlb_players
 
     default_scope {order('name ASC')}
   
     def self.get_teams_from_api(season='2020')
-        response = ApiCall.new(season)
-        teams = response.mlb_teams
+        response = Mlb::RapidApi.new('teams', season)
+        teams = response.teams
         teams.each{|team| create_from_api(team) }
+    end
+
+    def get_roster_from_api()
+        response = Mlb::RapidApi.new('roster', '2020', self.id)
+        roster = response.results
+        roster.each{|player| self.mlb_players.create_from_api(player) }
     end
 
     def self.create_from_api(team)

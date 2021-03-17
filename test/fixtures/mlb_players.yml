@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  position_txt: MyString
+  jersey_number: MyString
+  first_name: MyString
+  last_name: MyString
+  bats: MyString
+  debut_date: MyString
+  position_num: MyString
+
+two:
+  position_txt: MyString
+  jersey_number: MyString
+  first_name: MyString
+  last_name: MyString
+  bats: MyString
+  debut_date: MyString
+  position_num: MyString

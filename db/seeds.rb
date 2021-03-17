@@ -10,4 +10,6 @@
 # you = User.create(email:'Steve@email.com', password: 'password')
 
 
-# MlbTeam.get_teams_from_api('2020')
+# Mlb::MlbTeam.get_teams_from_api('2020')
+
+Mlb::MlbTeam.all.each{|team| team.get_roster_from_api }

@@ -6,6 +6,12 @@ Rails.application.routes.draw do
 
   post '/login', to: 'auth#create'
   get '/profile', to: 'users#profile'
-  get '/mlbTeams', to: 'teams#mlb'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # get '/mlbTeams', to: 'teams#mlb'
+  namespace :mlb do
+    resources :mlb_teams, only: [:index, :show] do 
+      resources :mlb_players, only: [:index]
+    end
+    get '/mlb_player/:id/stats', to: 'mlb_players#stats'
+  end
+
 end
