@@ -1,6 +1,7 @@
 class MlbTeam < ApplicationRecord
-# attr_accessor :id, :name, :venue, :city, :state, :division, :league, :base_url, :website_url, :timezone
 
+    default_scope {order('name ASC')}
+  
     def self.get_teams_from_api(season='2020')
         response = ApiCall.new(season)
         teams = response.mlb_teams
