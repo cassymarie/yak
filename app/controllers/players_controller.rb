@@ -8,6 +8,11 @@ class PlayersController < ApplicationController
     render json: @players
   end
 
+  def roster
+    roster = MlbTeam.find_by(id: 144)
+    render json:roster
+  end
+
   # GET /players/1
   def show
     render json: @player
@@ -45,6 +50,7 @@ class PlayersController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
+    
     def player_params
       params.require(:player).permit(:name, :position, :status, :jersey_number)
     end
