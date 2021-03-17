@@ -10,18 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_012723) do
+ActiveRecord::Schema.define(version: 2021_03_16_234427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
-    t.bigint "home_id"
     t.bigint "away_id"
+    t.bigint "home_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["away_id"], name: "index_games_on_away_id"
     t.index ["home_id"], name: "index_games_on_home_id"
+  end
+
+  create_table "mlb_teams", force: :cascade do |t|
+    t.string "name"
+    t.string "venue"
+    t.string "city"
+    t.string "state"
+    t.string "division"
+    t.string "league"
+    t.string "base_url"
+    t.string "website_url"
+    t.string "timezone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "players", force: :cascade do |t|
@@ -51,18 +65,11 @@ ActiveRecord::Schema.define(version: 2021_03_15_012723) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "mlb_team_id"
-    t.boolean "custom_team"
-    t.bigint "C_id"
-    t.bigint "B1_id"
-    t.bigint "B2_id"
-    t.bigint "B3_id"
-    t.bigint "SS_id"
-    t.bigint "OF1_id"
-    t.bigint "OF2_id"
-    t.bigint "OF3_id"
-    t.bigint "DH_id"
+    t.string "mlb_id"
+    t.string "season"
     t.bigint "user_id"
+    t.boolean "custom_team"
+    t.string "custom_team_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_teams_on_user_id"
@@ -72,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_012723) do
     t.string "email"
     t.string "password_digest"
     t.string "uid"
+    t.string "provider"
     t.string "fav_team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -79,13 +87,4 @@ ActiveRecord::Schema.define(version: 2021_03_15_012723) do
 
   add_foreign_key "games", "teams", column: "away_id"
   add_foreign_key "games", "teams", column: "home_id"
-  add_foreign_key "teams", "players", column: "B1_id"
-  add_foreign_key "teams", "players", column: "B2_id"
-  add_foreign_key "teams", "players", column: "B3_id"
-  add_foreign_key "teams", "players", column: "C_id"
-  add_foreign_key "teams", "players", column: "DH_id"
-  add_foreign_key "teams", "players", column: "OF1_id"
-  add_foreign_key "teams", "players", column: "OF2_id"
-  add_foreign_key "teams", "players", column: "OF3_id"
-  add_foreign_key "teams", "players", column: "SS_id"
 end

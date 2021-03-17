@@ -9,6 +9,9 @@ gem 'rails', '~> 6.1.3'
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
+
+gem 'http'
+gem 'faraday'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -21,7 +24,11 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
-gem 'figaro'
+
+
+gem 'dotenv-rails'
+
+
 
 #Fast JSON Api - serializer
 gem 'fast_jsonapi'
