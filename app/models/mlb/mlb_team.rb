@@ -18,16 +18,16 @@ class Mlb::MlbTeam < ApplicationRecord
 
     def self.create_from_api(team)
         create(
-            id: team["team_id"],
-            name: team["name_display_long"],
-            venue: team["venue_name"],
             city: team["city"],
-            state: team["state"],
             division: team["division"],
+            id: team["team_id"],
             league: team["league"],
-            base_url: team["base_url"],
-            website_url: team["website_url"],
-            timezone: team["time_zone"]
+            name: team["name"],
+            name_full: team["name_display_long"],
+            state: team["state"],
+            timezone: team["time_zone"],
+            venue: team["venue_name"],
+            website: "https://www.mlb.com/#{team["name"].downcase.tr(" ", "")}"
         )
     end
 

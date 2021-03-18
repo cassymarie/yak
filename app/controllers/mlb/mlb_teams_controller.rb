@@ -2,16 +2,8 @@ class Mlb::MlbTeamsController < ApplicationController
 
     def index
         teams = Mlb::MlbTeam.all
-        render json: teams
+        render json: teams.to_json(
+            except: [:timezone, :created_at, :updated_at])
     end
 
-    def show
-        team = Mlb::MlbTeam.find_by(id: params[:id])
-        render json: team.mlb_players
-    end
-
-    # private
-    # def team_params
-    #     params.require(:team).permit(:id)
-    # end
 end
