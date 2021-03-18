@@ -47,13 +47,16 @@ ActiveRecord::Schema.define(version: 2021_03_17_162224) do
 
   create_table "mlb_teams", force: :cascade do |t|
     t.string "name"
+    t.string "name_full"
     t.string "venue"
     t.string "city"
     t.string "state"
     t.string "division"
     t.string "league"
-    t.string "base_url"
-    t.string "website_url"
+    t.string "logo"
+    t.string "color1"
+    t.string "color2"
+    t.string "website"
     t.string "timezone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
