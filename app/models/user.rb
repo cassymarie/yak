@@ -1,8 +1,10 @@
 class User < ApplicationRecord
     has_secure_password
     
-    validates :email, presence: true
-    validates :email, uniqueness: {message: ' already exists, Please Login to Continue', case_sensitive: false }
-
+    belongs_to :mlb_team, optional: true
     has_many :teams
+    
+    validates :username, presence: true
+    validates :username, uniqueness: {message: ' already taken, Please try again'}
+
 end

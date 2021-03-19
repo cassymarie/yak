@@ -101,12 +101,16 @@ ActiveRecord::Schema.define(version: 2021_03_17_162224) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
+    t.string "name_first"
+    t.string "name_last"
+    t.bigint "mlb_team_id"
     t.string "password_digest"
-    t.string "uid"
     t.string "provider"
-    t.string "fav_team_id"
+    t.string "uid"
+    t.string "username"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["mlb_team_id"], name: "index_users_on_mlb_team_id"
   end
 
   add_foreign_key "games", "teams", column: "away_id"
