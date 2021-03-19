@@ -1,5 +1,6 @@
 class Stat < ApplicationRecord
-    belongs_to :player
-    belongs_to :team
+    belongs_to :mlb_player
+    belongs_to :mlb_team
     belongs_to :game
+    belongs_to :lineup
 end

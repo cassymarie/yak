@@ -1,9 +1,10 @@
 class CreateStats < ActiveRecord::Migration[6.1]
   def change
     create_table :stats do |t|
-      t.references :player, index: true
-      t.references :team, index: true
-      t.references :game, index: true
+      t.references :mlb_player
+      t.references :mlb_team
+      t.references :game
+      t.references :lineup
       t.integer :inning
       t.integer :hit
       t.integer :k

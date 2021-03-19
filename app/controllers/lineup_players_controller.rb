@@ -1,0 +1,2 @@
+class LineupPlayersController < ApplicationController
+end

@@ -185,3 +185,7 @@ yankees.color2 = '#002a5c'
 yankees.save
 
 Mlb::MlbTeam.all.each{|team| team.get_roster_from_api }
+
+cu = User.new(username:"computer",  password:ENV['COMPUTER_PW'], name_first: "Computer")
+cu.lineups.new
+cu.save

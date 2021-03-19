@@ -1,6 +1,9 @@
 class Mlb::MlbPlayer < ApplicationRecord
 
     belongs_to :mlb_team
+    has_many :lineup_players
+    has_many :lineups, through: :lineup_players
+    has_many :stats
 
     default_scope {order('last_name ASC')}
 

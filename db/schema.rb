@@ -10,18 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_162224) do
+ActiveRecord::Schema.define(version: 2021_03_19_180944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
-    t.bigint "away_id"
-    t.bigint "home_id"
+    t.bigint "mlb_team_id"
+    t.bigint "user_id"
+    t.bigint "lineup_id"
+    t.boolean "home"
+    t.string "matchup"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["away_id"], name: "index_games_on_away_id"
-    t.index ["home_id"], name: "index_games_on_home_id"
+    t.index ["lineup_id"], name: "index_games_on_lineup_id"
+    t.index ["mlb_team_id"], name: "index_games_on_mlb_team_id"
+    t.index ["user_id"], name: "index_games_on_user_id"
+  end
+
+  create_table "lineup_players", force: :cascade do |t|
+    t.string "position"
+    t.bigint "mlb_player_id"
+    t.bigint "lineup_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lineup_id"], name: "index_lineup_players_on_lineup_id"
+    t.index ["mlb_player_id"], name: "index_lineup_players_on_mlb_player_id"
+  end
+
+  create_table "lineups", force: :cascade do |t|
+    t.bigint "mlb_team_id"
+    t.bigint "user_id"
+    t.string "season"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mlb_team_id"], name: "index_lineups_on_mlb_team_id"
+    t.index ["user_id"], name: "index_lineups_on_user_id"
   end
 
   create_table "mlb_players", force: :cascade do |t|
@@ -62,19 +86,11 @@ ActiveRecord::Schema.define(version: 2021_03_17_162224) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "players", force: :cascade do |t|
-    t.string "name"
-    t.string "position"
-    t.string "status"
-    t.integer "jersey_number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "stats", force: :cascade do |t|
-    t.bigint "player_id"
-    t.bigint "team_id"
+    t.bigint "mlb_player_id"
+    t.bigint "mlb_team_id"
     t.bigint "game_id"
+    t.bigint "lineup_id"
     t.integer "inning"
     t.integer "hit"
     t.integer "k"
@@ -84,35 +100,20 @@ ActiveRecord::Schema.define(version: 2021_03_17_162224) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_stats_on_game_id"
-    t.index ["player_id"], name: "index_stats_on_player_id"
-    t.index ["team_id"], name: "index_stats_on_team_id"
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.string "mlb_id"
-    t.string "season"
-    t.bigint "user_id"
-    t.boolean "custom_team"
-    t.string "custom_team_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_teams_on_user_id"
+    t.index ["lineup_id"], name: "index_stats_on_lineup_id"
+    t.index ["mlb_player_id"], name: "index_stats_on_mlb_player_id"
+    t.index ["mlb_team_id"], name: "index_stats_on_mlb_team_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
     t.string "name_first"
     t.string "name_last"
     t.bigint "mlb_team_id"
     t.string "password_digest"
-    t.string "provider"
-    t.string "uid"
     t.string "username"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["mlb_team_id"], name: "index_users_on_mlb_team_id"
   end
 
-  add_foreign_key "games", "teams", column: "away_id"
-  add_foreign_key "games", "teams", column: "home_id"
 end
