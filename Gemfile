@@ -28,10 +28,8 @@ gem 'omniauth-rails_csrf_protection'
 
 gem 'dotenv-rails'
 
-
-
-#Fast JSON Api - serializer
 gem 'fast_jsonapi'
+# gem 'active_model_serializers'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -5,7 +5,6 @@ class Mlb::MlbPlayer < ApplicationRecord
     default_scope {order('last_name ASC')}
 
     def self.create_from_api(player)
-
         roster_player = {
             bats: player["bats"],
             birth_date: player["birth_date"].to_date,
@@ -19,7 +18,7 @@ class Mlb::MlbPlayer < ApplicationRecord
             name_display_first_last: player["name_display_first_last"],
             position_num: player["primary_position"].to_i,
             position_txt: player["position_txt"],
-            status: player["status"],
+            status: player["status_code"],
             throws: player["throws"],
             weight: player["weight"]
         }
