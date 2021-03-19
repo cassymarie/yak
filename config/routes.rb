@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lineups
   # resources :players, only: [:index, :show]
   # resources :teams
   # resources :players
