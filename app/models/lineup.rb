@@ -5,5 +5,4 @@ class Lineup < ApplicationRecord
     has_many :lineup_players
     has_many :mlb_players, through: :lineup_players
     has_many :games
-
 end
