@@ -10,38 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_012723) do
+ActiveRecord::Schema.define(version: 2021_03_19_180944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
-    t.bigint "away_id"
-    t.bigint "home_id"
-    t.bigint "away_user_id"
-    t.bigint "home_user_id"
-    t.bigint "away_lineup_id"
-    t.bigint "home_lineup_id"
+    t.integer "away"
+    t.integer "home"
+    t.integer "away_user"
+    t.integer "home_user"
+    t.integer "away_lineup"
+    t.integer "home_lineup"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["away_id"], name: "index_games_on_away_id"
-    t.index ["away_lineup_id"], name: "index_games_on_away_lineup_id"
-    t.index ["away_user_id"], name: "index_games_on_away_user_id"
-    t.index ["home_id"], name: "index_games_on_home_id"
-    t.index ["home_lineup_id"], name: "index_games_on_home_lineup_id"
-    t.index ["home_user_id"], name: "index_games_on_home_user_id"
+  end
+
+  create_table "lineup_players", force: :cascade do |t|
+    t.string "position"
+    t.bigint "mlb_player_id"
+    t.bigint "lineup_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lineup_id"], name: "index_lineup_players_on_lineup_id"
+    t.index ["mlb_player_id"], name: "index_lineup_players_on_mlb_player_id"
   end
 
   create_table "lineups", force: :cascade do |t|
-    t.string "pos1"
-    t.string "pos2"
-    t.string "pos3"
-    t.string "pos4"
-    t.string "pos5"
-    t.string "pos6"
-    t.string "pos7"
-    t.string "pos8"
-    t.string "pos9"
     t.bigint "mlb_team_id"
     t.bigint "user_id"
     t.string "season"
@@ -119,10 +114,4 @@ ActiveRecord::Schema.define(version: 2021_03_15_012723) do
     t.index ["mlb_team_id"], name: "index_users_on_mlb_team_id"
   end
 
-  add_foreign_key "games", "lineups", column: "away_lineup_id"
-  add_foreign_key "games", "lineups", column: "home_lineup_id"
-  add_foreign_key "games", "mlb_teams", column: "away_id"
-  add_foreign_key "games", "mlb_teams", column: "home_id"
-  add_foreign_key "games", "users", column: "away_user_id"
-  add_foreign_key "games", "users", column: "home_user_id"
 end

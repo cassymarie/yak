@@ -1,6 +1,7 @@
 class Mlb::MlbTeam < ApplicationRecord
 
     has_many :mlb_players
+    has_many :lineups
     has_many :users
 
     default_scope {order('name ASC')}

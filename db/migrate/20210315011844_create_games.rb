@@ -1,12 +1,12 @@
 class CreateGames < ActiveRecord::Migration[6.1]
   def change
     create_table :games do |t|
-      t.references :away, index: true, foreign_key: {to_table: :mlb_teams}
-      t.references :home, index: true, foreign_key: {to_table: :mlb_teams}
-      t.references :away_user, index: true, foreign_key: {to_table: :users}
-      t.references :home_user, index: true, foreign_key: {to_table: :users}
-      t.references :away_lineup, index: true, foreign_key: {to_table: :lineups}
-      t.references :home_lineup, index: true, foreign_key: {to_table: :lineups}
+      t.integer :away
+      t.integer :home
+      t.integer :away_user
+      t.integer :home_user
+      t.integer :away_lineup
+      t.integer :home_lineup
       t.timestamps
     end
   end

@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
+  resources :lineup_players
   resources :lineups
-  # resources :players, only: [:index, :show]
-  # resources :teams
-  # resources :players
 
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#login'
