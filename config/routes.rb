@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :lineup_players
-  resources :lineups
 
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#login'
@@ -14,5 +12,9 @@ Rails.application.routes.draw do
     get '/player/:id/career_stats', to: 'mlb_players#career_stats'
     get '/player/:id/season_stats', to: 'mlb_players#season_stats'
   end
+
+
+  resources :lineup_players
+  resources :lineups, only: [:index, :create, :destroy]
 
 end
