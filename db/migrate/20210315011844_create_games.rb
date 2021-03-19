@@ -1,12 +1,11 @@
 class CreateGames < ActiveRecord::Migration[6.1]
   def change
     create_table :games do |t|
-      t.integer :away
-      t.integer :home
-      t.integer :away_user
-      t.integer :home_user
-      t.integer :away_lineup
-      t.integer :home_lineup
+      t.references :mlb_team
+      t.references :user
+      t.references :lineup
+      t.boolean :home
+      t.string :matchup
       t.timestamps
     end
   end

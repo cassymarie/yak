@@ -16,14 +16,16 @@ ActiveRecord::Schema.define(version: 2021_03_19_180944) do
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
-    t.integer "away"
-    t.integer "home"
-    t.integer "away_user"
-    t.integer "home_user"
-    t.integer "away_lineup"
-    t.integer "home_lineup"
+    t.bigint "mlb_team_id"
+    t.bigint "user_id"
+    t.bigint "lineup_id"
+    t.boolean "home"
+    t.string "matchup"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["lineup_id"], name: "index_games_on_lineup_id"
+    t.index ["mlb_team_id"], name: "index_games_on_mlb_team_id"
+    t.index ["user_id"], name: "index_games_on_user_id"
   end
 
   create_table "lineup_players", force: :cascade do |t|
