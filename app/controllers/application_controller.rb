@@ -5,18 +5,16 @@ class ApplicationController < ActionController::API
       JWT.encode(payload, ENV['JWT_KEY'])
     end
 
-    def auth_header
+    def get_auth
       request.headers['Authorization']
     end
 
     def decoded_token
-      if auth_header
-        JWT.decode(auth_header, ENV['JWT_KEY'])[0]["user_id"]
-      end
+        JWT.decode(get_auth, ENV['JWT_KEY'])[0]["user_id"]
     end
 
     def logged_in_user
-      User.find_by(id: decoded_token)
+      @user = User.find_by(id: decoded_token)
     end
 
     # def authorized

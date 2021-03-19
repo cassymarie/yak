@@ -9,11 +9,11 @@ angels.color1 = '#862633'
 angels.color2 = '#d50032'
 angels.save
 
-# astros = Mlb::MlbTeam.find_by(id: 117)
-# astros.logo = 'https://www.mlbstatic.com/team-logos/team-cap-on-dark/117.svg'
-# astros.color1 = '#003087'
-# astros.color2 = '#eb5b06'
-# astros.save
+astros = Mlb::MlbTeam.find_by(id: 117)
+astros.logo = 'https://www.mlbstatic.com/team-logos/team-cap-on-dark/117.svg'
+astros.color1 = '#003087'
+astros.color2 = '#eb5b06'
+astros.save
 
 athletics = Mlb::MlbTeam.find_by(id: 133)
 athletics.logo = 'https://images.ctfassets.net/iiozhi00a8lc/6pTfb3rol9EuujxQMapyVn/731b8e99ee22a4001d2ab83dd5241bae/133_kelly_green.svg'

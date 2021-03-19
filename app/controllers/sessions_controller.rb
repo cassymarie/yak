@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
     end
 
     def autologin
-        binding.pry
         render json: { user: UserSerializer.new(logged_in_user) }
     end
 
