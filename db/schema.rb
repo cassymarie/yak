@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_180944) do
     t.string "height_feet"
     t.string "height_inches"
     t.bigint "mlb_team_id"
+    t.string "headshot"
+    t.string "image_action"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["mlb_team_id"], name: "index_mlb_players_on_mlb_team_id"

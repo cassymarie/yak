@@ -1,19 +1,22 @@
+
 class Mlb::MlbTeam < ApplicationRecord
 
     has_many :mlb_players
     has_many :lineups
     has_many :users
 
+    # accepts_nested_attributes_for :mlb_players
+
     default_scope {order('name ASC')}
   
-    def self.get_teams_from_api(season='2020')
+    def self.get_teams_from_api(season=YEAR)
         response = Mlb::RapidApi.new('teams', season)
         teams = response.teams
         teams.each{|team| create_from_api(team) }
     end
 
     def get_roster_from_api()
-        response = Mlb::RapidApi.new('roster', '2020', self.id)
+        response = Mlb::RapidApi.new('roster', YEAR, self.id)
         roster = response.results
         roster.each{|player| self.mlb_players.create_from_api(player) }
     end
@@ -31,6 +34,10 @@ class Mlb::MlbTeam < ApplicationRecord
             venue: team["venue_name"],
             website: "https://www.mlb.com/#{team["name"].downcase.tr(" ", "")}"
         )
+    end
+
+    def fullName
+        name_full
     end
 
     def self.american

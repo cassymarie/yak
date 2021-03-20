@@ -7,9 +7,11 @@ TOPIC = {
     games: 'org_game_type_date_info'
 }
 
+YEAR=2020
+
 class Mlb::RapidApi
 attr_reader :results, :teams
-    def initialize(type, season='2020', team_id='', player_id='')
+    def initialize(type, season=YEAR, team_id='', player_id='')
         @results = ''
         query_topic = TOPIC[type.to_sym]
         query = case type

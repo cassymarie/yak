@@ -1,4 +1,4 @@
 class Mlb::MlbPlayerSerializer
     include FastJsonapi::ObjectSerializer
-    # attributes :id, :id, :name, :city, :state, :league, :division, :base_url
-  end
+    attributes :id, :nameFirst, :nameLast, :nameFull, :position, :jersey, :bats, :throws, :birthDate, :weight, :heightImp
+end
