@@ -1,6 +1,6 @@
 class Mlb::MlbPlayersController < ApplicationController
 
-    before_action :set_mlb_player, only: [:show, :stats, :career_stats, :season_stats, :images]
+    before_action :set_mlb_player, only: [:show, :stats, :career, :images]
 
     def index
         team = Mlb::MlbTeam.find_by(id: params[:team_id])
@@ -12,18 +12,13 @@ class Mlb::MlbPlayersController < ApplicationController
         render json: Mlb::MlbPlayerSerializer.new(@player)
     end
     
-    def season_stats
-        stats = Mlb::MlbStats.new(@player, 'season')
-        render json: stats
-    end
-    
-    def career_stats
+    def career
         stats = Mlb::MlbStats.new(@player, 'career')
         render json: stats
     end
 
     def stats
-        stats = Mlb::MlbStats.new(@player)
+        stats = Mlb::MlbStats.new(@player.id)
         render json: stats
     end
 

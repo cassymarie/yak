@@ -1,12 +1,10 @@
-YEAR=2020
+YEAR=2021
 
 class Mlb::MlbStats
 
     attr_reader :stats
 
     def initialize(player, stats_type)
-
-        player.integer? ? player = Mlb::MlbPlayer.find(player) : player
 
         query_type = player.position_num === 1 ? 'stats_pitcher' : 'stats_hitter'
 

@@ -11,8 +11,7 @@ Rails.application.routes.draw do
       resources :roster, only: [:index], controller: 'mlb_players'
     end
     resources :player, only: [:show], controller: 'mlb_players'
-    get '/player/:id/career_stats', to: 'mlb_players#career_stats'
-    get '/player/:id/season_stats', to: 'mlb_players#season_stats'
+    get '/player/:id/career', to: 'mlb_players#career'
     get '/player/:id/images', to: 'mlb_players#images'
   end
   

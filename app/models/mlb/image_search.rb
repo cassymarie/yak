@@ -6,6 +6,6 @@ class Mlb::ImageSearch
         search = "#{player_name}-#{id.to_s}"
         doc = Nokogiri::HTML(URI.open("https://www.mlb.com/player/#{search}"))
         @headshot = doc.at_css('.player-headshot')["src"]
-        @image = doc.at_css('.player-header')["style"]
+        @image = doc.at_css('.player-header')["style"].gsub("background-image: url('","").delete_suffix("')")
     end
 end
