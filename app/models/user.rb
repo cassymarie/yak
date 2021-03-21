@@ -7,6 +7,4 @@ class User < ApplicationRecord
     
     validates :username, presence: true
     validates :username, uniqueness: {message: ' already taken, Please try again'}
-
-
 end

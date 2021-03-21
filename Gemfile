@@ -25,6 +25,9 @@ gem 'omniauth', '~> 1.9'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
+gem 'nokogiri'
+gem 'open-uri'
+
 
 gem 'dotenv-rails'
 

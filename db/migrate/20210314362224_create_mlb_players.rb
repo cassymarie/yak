@@ -16,6 +16,8 @@ class CreateMlbPlayers < ActiveRecord::Migration[6.1]
       t.string :height_feet
       t.string :height_inches
       t.references :mlb_team
+      t.string :headshot
+      t.string :image_action
       t.timestamps
     end
   end
