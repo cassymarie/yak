@@ -1,5 +1,5 @@
 class LineupPlayersController < ApplicationController
-
+    
     def index
         # binding.pry
         players = Lineup.find(params[:lineup_id]).lineup_players

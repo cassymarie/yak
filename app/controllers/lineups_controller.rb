@@ -1,4 +1,5 @@
 class LineupsController < ApplicationController
+    before_action :set_lineup, only: [:show, :destroy]
 
     def index
         lineups = logged_in_user.lineups
@@ -11,12 +12,21 @@ class LineupsController < ApplicationController
     end
 
     def show
-        lineup = Lineup.find(params[:id])
-        render json: LineupSerializer.new(lineup, {include: [:lineup_players]})
+        render json: LineupSerializer.new(@lineup, {include: [:lineup_players]})
+    end
+
+    def destroy
+        @lineup.destroy
+        render json: @lineup.to_json
     end
 
     private
     def lineup_params
         params.require(:lineup).permit(:id, :mlb_team_id, :season)
     end
+
+    def set_lineup
+        @lineup = Lineup.find_by(id: params[:id])
+    end
+
 end
