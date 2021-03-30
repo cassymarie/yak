@@ -14,8 +14,6 @@ Rails.application.routes.draw do
     get '/player/:id/career', to: 'mlb_players#career'
     get '/player/:id/images', to: 'mlb_players#images'
   end
-  
-  # resources :lineup_players, only: [:create]
 
   resources :lineups, only: [:index, :show, :create, :destroy] do 
     resources :players, only: [:index,:create, :update, :destroy], controller: 'lineup_players'
