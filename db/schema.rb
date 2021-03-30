@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_180944) do
+ActiveRecord::Schema.define(version: 2021_03_26_013503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_180944) do
     t.bigint "lineup_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "dh", default: false
     t.index ["lineup_id"], name: "index_lineup_players_on_lineup_id"
     t.index ["mlb_player_id"], name: "index_lineup_players_on_mlb_player_id"
   end
